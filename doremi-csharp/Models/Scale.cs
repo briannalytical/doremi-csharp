@@ -1,3 +1,5 @@
+using System.ComponentModel.Design.Serialization;
+
 namespace doremi_csharp.Models;
 
 public class Scale
