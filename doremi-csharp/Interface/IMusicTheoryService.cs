@@ -1,9 +1,10 @@
 using doremi_csharp.Models;
-namespace doremi_csharp;
 
-
-public interface IMusicTheoryService
+namespace doremi_csharp.Interface
 {
-    Scale BuildScale(string rootNote, Scale.ScaleType type);
-    Chord BuildChord(string rootNote, Chord.ChordType type);
+    public interface IMusicTheoryService
+    {
+        Scale BuildScale(string rootNote, ScaleType scaleType);
+        Chord BuildChord(string rootNote, ChordType chordType);
+    }
 }
