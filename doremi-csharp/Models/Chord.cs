@@ -2,7 +2,6 @@ namespace doremi_csharp.Models
 {
     public class Chord
     {
-        
         public string Root { get; private set; }
         public ChordType Type { get; private set; }
         public List<string> Notes { get; private set; }

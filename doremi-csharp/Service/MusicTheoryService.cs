@@ -1,5 +1,4 @@
 using doremi_csharp.Models;
-using doremi_csharp.Interface;
 
 namespace doremi_csharp.Service
 {
@@ -12,8 +11,7 @@ namespace doremi_csharp.Service
             _chromaticScale = new ChromaticScale();
         }
 
-        public Scale BuildScale(string rootNote, Scale.ScaleType scaleType)
-        {
+        public Scale BuildScale(string rootNote, ScaleType scaleType)        {
             List<string> chromaticNotes = _chromaticScale.GetChromaticScaleForKey(rootNote);
             
             int rootIndex = chromaticNotes.IndexOf(rootNote);
