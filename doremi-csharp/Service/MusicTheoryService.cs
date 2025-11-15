@@ -1,9 +1,7 @@
 using doremi_csharp.Models;
-using System.Collections.Generic;
 using doremi_csharp.Interface;
-using doremi_csharp.Service;
 
-namespace doremi_csharp.Services
+namespace doremi_csharp.Service
 {
     public class MusicTheoryService : IMusicTheoryService
     {
@@ -14,10 +12,24 @@ namespace doremi_csharp.Services
             _chromaticScale = new ChromaticScale();
         }
 
-        public Scale BuildScale(string rootNote, ScaleType scaleType)
+        public Scale BuildScale(string rootNote, Scale.ScaleType scaleType)
         {
-            // TODO: Implement scale building
-            throw new NotImplementedException();
+            List<string> chromaticNotes = _chromaticScale.GetChromaticScaleForKey(rootNote);
+            
+            int rootIndex = chromaticNotes.IndexOf(rootNote);
+            
+            int[] intervals = scaleType == ScaleType.Major 
+                ? new int[] { 0, 2, 4, 5, 7, 9, 11, 12 }
+                : new int[] { 0, 2, 3, 5, 7, 8, 10, 12 };
+    
+            List<string> scaleNotes = new List<string>();
+            foreach (int interval in intervals)
+            {
+                int noteIndex = (rootIndex + interval) % chromaticNotes.Count;
+                scaleNotes.Add(chromaticNotes[noteIndex]);
+            }
+    
+            return new Scale(rootNote, scaleType, scaleNotes);
         }
 
         public Chord BuildChord(string rootNote, ChordType chordType)
